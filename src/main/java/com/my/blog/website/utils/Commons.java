@@ -39,6 +39,8 @@ public final class Commons {
         siteService = ss;
     }
 
+    private static Pattern IMG_PATTERN = Pattern.compile("src\\s*=\\s*\'?\"?(.*?)(\'|\"|>|\\s+)");
+
 
     /**
      * 判断分页中是否有数据
@@ -398,7 +400,7 @@ public final class Commons {
             if (m_image.find()) {
                 img = img + "," + m_image.group();
                 // //匹配src
-                Matcher m = Pattern.compile("src\\s*=\\s*\'?\"?(.*?)(\'|\"|>|\\s+)").matcher(img);
+                Matcher m = IMG_PATTERN.matcher(img);
                 if (m.find()) {
                     return m.group(1);
                 }
